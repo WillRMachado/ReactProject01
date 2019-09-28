@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const allowCors = require('./cors');
 //middlewares - singletons: commons 
 
 
@@ -14,9 +15,14 @@ server.use(bodyParser.urlencoded({
 }))
 //considera o formato json no corpo da requisição
 server.use(bodyParser.json());
-server.listen(port, function () {
+server.use(allowCors)
+
+
+const callback = function () {
     //template string (observe a crase)
     console.log(`servidor no ar, na porta ${port}`);
-});
+}
+
+server.listen(port, callback)
 
 module.exports = server

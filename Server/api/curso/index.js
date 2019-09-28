@@ -1,8 +1,11 @@
 //serviços rest
-const Cursos = require('./cursos');
-Cursos.methods(['get', 'post', 'put', 'delete']);
-Cursos.updateOptions({
+const curso = require('./model');
+curso.methods(['get', 'post', 'put', 'delete']);
+curso.updateOptions({
     new: true,
     runValidators: true
 });
-module.exports = Cursos;
+module.exports = curso;
+
+
+//rafael@verzel.com.br
