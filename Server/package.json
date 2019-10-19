@@ -4,9 +4,7 @@
   "description": "Server for Impacta's React project",
   "main": "loader.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "devw": "node .\node_modules\nodemon\bin\nodemon.js"
-
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -20,7 +18,7 @@
   "homepage": "https://github.com/WillRMachado/ReactProject01#readme",
   "devDependencies": {
     "express": "^4.17.1",
-    "nodemon": "^1.19.3"
+    "nodemon": "^1.19.2"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

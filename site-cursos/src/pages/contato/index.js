@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import Cabecalho from '../../components/menu/cabecalho';
+
+
+
     export default class Curso extends Component {
         render() {
         return (
-            <div>
-             <h1>Classe Curso</h1>
+            <div className="container">
+            <Cabecalho titulo="Contato"
+            subtitulo="entre em contato conosco" />
             </div>
         )
     }
