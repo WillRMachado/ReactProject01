@@ -14,7 +14,7 @@ export default class Cadastro extends Component {
         _id: '',
         codigo: 0,
         descricao: '',
-        cargaHoraria: 0,
+        cargaHoraria: 0, 
         preco: 0.0,
         categoria: 'REDES',
         textoBotao : 'Adicionar'
