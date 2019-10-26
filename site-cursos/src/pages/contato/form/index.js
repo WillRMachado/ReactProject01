@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 
 class FormContato extends Component {
@@ -60,4 +61,13 @@ class FormContato extends Component {
 }
 
 
-export default FormContato
+
+
+const mapStateToProps = state => ({
+    data: state.contato.data,
+    nome:state.contato.nome
+})
+
+// export default FormContato
+
+export default connect(mapStateToProps)(FormContato);
