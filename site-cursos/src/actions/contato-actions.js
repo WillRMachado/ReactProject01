@@ -36,7 +36,9 @@ export const alteraAssunto = e => {
 
 
 export const adicionaContato = (data, nome, email, assunto) => {
-    const request = axios.post(URL, {data, nome, email, assunto });
+    const URL = "http://localhost:3200/api/curso"
+
+    const request = axios.post(URL, { data, nome, email, assunto });
 
     return ({
         type: 'LIMPAR_FORM',
