@@ -1,3 +1,6 @@
+import axios from 'axios'
+
+
 export const alteraData = e => {
     return ({
         type: 'ATUALIZA_DATA',
@@ -26,6 +29,18 @@ export const alteraAssunto = e => {
     return ({
         type: 'ATUALIZA_ASSUNTO',
         info: e.target.value,
+    }
+    )
+}
+
+
+
+export const adicionaContato = (data, nome, email, assunto) => {
+    const request = axios.post(URL, {data, nome, email, assunto });
+
+    return ({
+        type: 'ADICIONA_CONTATO',
+        info: request,
     }
     )
 }

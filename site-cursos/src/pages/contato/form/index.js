@@ -6,7 +6,8 @@ import {
     alteraData,
     alteraNome,
     alteraEmail,
-    alteraAssunto
+    alteraAssunto,
+    adicionaContato
 } from '../../../actions/contato-actions';
 
 
@@ -14,11 +15,23 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     alteraData,
     alteraNome,
     alteraEmail,
-    alteraAssunto
+    alteraAssunto,
+    adicionaContato
 }, dispatch)
 
 
 class FormContato extends Component {
+
+
+    adicionar = function(e){
+        e.preventDefault()
+        this.props.adicionaContato(this.props.data,
+            this.props.nome,
+            this.props.email,
+            this.props.assunto)
+        alert("foi")
+    }
+
     render() {
         return (
             <div>
@@ -69,7 +82,7 @@ class FormContato extends Component {
                         </div>
                     </div>
                     <div className="form-group row">
-                        <button className="btn btn-primary ml-3 mb-3">
+                        <button className="btn btn-primary ml-3 mb-3" onClick={this.adicionar.bind(this)}>
                             Adicionar
                         </button>
                     </div>
