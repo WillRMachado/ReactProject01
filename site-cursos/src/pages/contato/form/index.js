@@ -4,10 +4,18 @@ import { bindActionCreators } from 'redux';
 
 import {
     alteraData,
-    alteraNome
+    alteraNome,
+    alteraEmail,
+    alteraAssunto
 } from '../../../actions/contato-actions';
 
 
+const mapDispatchToProps = dispatch => bindActionCreators({
+    alteraData,
+    alteraNome,
+    alteraEmail,
+    alteraAssunto
+}, dispatch)
 
 
 class FormContato extends Component {
@@ -85,9 +93,6 @@ const mapStoreToProps = store => ({
 
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-    alteraData
-}, dispatch)
 
 // export default FormContato
 
