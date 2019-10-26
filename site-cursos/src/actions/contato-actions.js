@@ -39,7 +39,7 @@ export const adicionaContato = (data, nome, email, assunto) => {
     const request = axios.post(URL, {data, nome, email, assunto });
 
     return ({
-        type: 'ADICIONA_CONTATO',
+        type: 'LIMPAR_FORM',
         info: request,
     }
     )
