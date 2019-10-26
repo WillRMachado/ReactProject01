@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 
-function Formulario() {
+function Formulario(props) {
     const [cod, setCod] = useState(555);
-    const [descricao, setDescricao] = useState("");
+    const [descricao, setDescricao] = useState(props.minhaVar);
     const [cargaHoraria, setCargaHoraria] = useState(0);
     const [preco, setPreco] = useState(0);
     const [categoria, setCategoria] = useState("");
+
+    
+console.log(props.minhaVar)
 
     return (
         <div className="border-right pl-3 pr-3">
