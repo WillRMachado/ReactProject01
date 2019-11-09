@@ -1,22 +1,23 @@
-import React from 'react';
+import React from 'react'
+import axios from 'axios'
 import {
   StyleSheet,
   Text,
   View,
   SafeAreaView,
   FlatList,
+  Dimensions
 } from 'react-native';
+import Axios from 'axios';
+
+const width = Dimensions.get('window').width
+
+const URL = 'http://172.16.20.19:3200/api/curso'
 
 export default class App extends React.Component {
 
   initialState = {
-    data: [{
-      codigo: 123,
-      descricao: 'Teste',
-      cargaHoraria: 40,
-      preco: 150.32,
-      categoria: 'REDES'
-    }],
+    data: [],
     isRefreshing: false
   }
 
@@ -25,14 +26,23 @@ export default class App extends React.Component {
     this.state = this.initialState
   }
 
+  componentDidMount(){
+    axios.get(URL).then(response => {
+        if(response.data){
+          this.setState({...this.state, data : response.data})
+        }
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
   render() {
-    console.log("teste debug")
     return (
       <View style={styles.container}>
         <Text style={styles.texto}>Lista de Cursos</Text>
         <SafeAreaView>
           <FlatList
-            keyExtractor={(item, index) => index.toString()}
+            keyExtractor={(_, index) => index.toString()}
             data={this.state.data}
             renderItem={({ item }) => {
               return (
@@ -60,10 +70,7 @@ const styles = StyleSheet.create({
     paddingTop: '15%'
   },
   conteudo: {
-    margin: 10,
-    borderWidth: 1,
-    backgroundColor: 'white',
-    fontSize: 20
+    color: "#333333"
   },
   texto: {
     alignItems: "center",
@@ -72,13 +79,10 @@ const styles = StyleSheet.create({
     color: '#FF0000',
   },
   item: {
+    width: width * 0.9,
     alignItems: "center",
     backgroundColor: "#dcda44",
-    flexGrow: 1,
     margin: 4,
     padding: 20
-  },
-  conteudo: {
-    color: "#333333"
   }
 });
