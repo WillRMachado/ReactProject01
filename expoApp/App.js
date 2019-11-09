@@ -26,13 +26,19 @@ export default class App extends React.Component {
     this.state = this.initialState
   }
 
-  componentDidMount(){
+  componentDidMount() {
+      this._getLista()
+  }
+
+  _getLista() {
+    this.setState({...this.state, isRefreshing : true})
     axios.get(URL).then(response => {
-        if(response.data){
-          this.setState({...this.state, data : response.data})
-        }
+      if (response.data) {
+        this.setState({ ...this.state, data: response.data, isRefreshing : false})
+      }
     }).catch(error => {
       console.log(error)
+      this.setState({...this.state, isRefreshing : false})
     })
   }
 
@@ -44,6 +50,8 @@ export default class App extends React.Component {
           <FlatList
             keyExtractor={(_, index) => index.toString()}
             data={this.state.data}
+            refreshing = {this.state.isRefreshing}
+            onRefresh={() => this._getLista()}
             renderItem={({ item }) => {
               return (
                 <View style={styles.item}>
