@@ -54,4 +54,5 @@ class Lista extends React.Component {
 }
 
 
+
 export default connect (mapStateToProps,null)(Lista)

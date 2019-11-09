@@ -1,21 +1,61 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import {
+    alteraCodigo,
+    alteraCargaHoraria,
+    alteraPreco,
+    alteraDescricao,
+    alteraCategoria
+} from '../../../actions/curso-action'
+
+import { bindActionCreators } from '../../../../../../../../AppData/Local/Microsoft/TypeScript/3.5/node_modules/redux';
 
 
-const  trazStoreParaProps = reduxState =>({
-    condigo:reduxState.curso.codigo,
-    descricao:reduxState.curso.descricao,
-    cargaHoraria:reduxState.curso.cargaHorariaigo,
-    preco:reduxState.curso.preco,
-    categoria:reduxState.curso.categoria,
-    textoBotao:reduxState.curso.textoBotao
+
+const trazStoreParaProps = reduxState => ({
+    codigo: reduxState.curso.codigo,
+    descricao: reduxState.curso.descricao,
+    cargaHoraria: reduxState.curso.cargaHorariaigo,
+    preco: reduxState.curso.preco,
+    categoria: reduxState.curso.categoria,
+    textoBotao: reduxState.curso.textoBotao
 })
+
+
+const dasPropsProRedux = despaxador => bindActionCreators({
+    alteraCodigo,
+    alteraCargaHoraria,
+    alteraPreco,
+    alteraDescricao,
+    alteraCategoria
+}, despaxador)
 
 class Formulario extends React.Component {
 
 
     render() {
+
+
+        // window.alert(this.props.codigo)
+
+        const {
+            codigo,
+            preco,
+            descricao,
+            cargaHoraria,
+            categoria,
+
+
+            alteraCodigo,
+            alteraPreco,
+            alteraDescricao,
+            alteraCargaHoraria,
+            alteraCategoria,
+         } = this.props
+
+        // window.alert(codigo)
+
         return (
             <div className="border-right pl-3 pr-3">
                 <h3 className="border-bottom">Formulário</h3>
@@ -27,8 +67,8 @@ class Formulario extends React.Component {
                         </label>
                         <div className="col-sm-9">
                             <input type="number"
-                                className="form-control" id="codigo" value={this.props.codigo}
-                                onChange={(e) => { this.props.alteraCampos(e.target) }} />
+                                className="form-control" id="codigo" value={codigo}
+                                onChange={alteraCodigo} />
                         </div>
                     </div>
                     <div className="form-group row">
@@ -38,8 +78,8 @@ class Formulario extends React.Component {
                         </label>
                         <div className="col-sm-9">
                             <input type="text"
-                                className="form-control" id="descricao" value={this.props.descricao}
-                                onChange={(e) => { this.props.alteraCampos(e.target) }} />
+                                className="form-control" id="descricao" value={descricao}
+                                onChange={alteraDescricao} />
                         </div>
                     </div>
 
@@ -49,8 +89,8 @@ class Formulario extends React.Component {
                             Carga Horária:</label>
                         <div className="col-sm-9">
                             <input type="number"
-                                className="form-control" id="cargaHoraria" value={this.props.cargaHoraria}
-                                onChange={(e) => { this.props.alteraCampos(e.target) }} />
+                                className="form-control" id="cargaHoraria" value={cargaHoraria}
+                                onChange={alteraCargaHoraria} />
                         </div>
                     </div>
                     <div className="form-group row">
@@ -59,16 +99,16 @@ class Formulario extends React.Component {
                             Preço:</label>
                         <div className="col-sm-9">
                             <input type="number"
-                                className="form-control" id="preco" value={this.props.preco}
-                                onChange={(e) => { this.props.alteraCampos(e.target) }} />
+                                className="form-control" id="preco" value={preco}
+                                onChange={alteraPreco} />
                         </div>
                     </div>
                     <div className="form-group row">
                         <label htmlFor="categoria"
                             className="col-sm-3 col-form-label">Categoria:</label>
                         <div className="col-sm-9">
-                            <select className="form-control" id="categoria" value={this.props.categoria}
-                                onChange={(e) => { this.props.alteraCampos(e.target) }}>
+                            <select className="form-control" id="categoria" value={categoria}
+                                onChange={alteraCategoria}>
                                 <option>INFORMATICA</option>
                                 <option>ENGENHARIA</option>
                                 <option>ADMINISTRACAO</option>
@@ -93,4 +133,4 @@ class Formulario extends React.Component {
 }
 
 
-export default connect(trazStoreParaProps, null)(Formulario)
+export default connect(trazStoreParaProps, dasPropsProRedux)(Formulario)
