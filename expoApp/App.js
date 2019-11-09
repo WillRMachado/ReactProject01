@@ -1,26 +1,51 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  FlatList,
+} from 'react-native';
 
 export default class App extends React.Component {
 
   initialState = {
-    data: [],
+    data: [{
+      codigo: 123,
+      descricao: 'Teste',
+      cargaHoraria: 40,
+      preco: 150.32,
+      categoria: 'REDES'
+    }],
     isRefreshing: false
   }
 
+  constructor(props) {
+    super(props)
+    this.state = this.initialState
+  }
+
   render() {
+    console.log("teste debug")
     return (
       <View style={styles.container}>
-        <Text style={styles.texto}>hidden</Text>
-        <View>
-          <SafeAreaView>
-            {/* <Text>hidden</Text> */}
-
-            <FlatList>
-
-            </FlatList>
-          </SafeAreaView>
-        </View>
+        <Text style={styles.texto}>Lista de Cursos</Text>
+        <SafeAreaView>
+          <FlatList
+            keyExtractor={(item, index) => index.toString()}
+            data={this.state.data}
+            renderItem={({ item }) => {
+              return (
+                <View style={styles.item}>
+                  <Text style={styles.conteudo}>{item.codigo}</Text>
+                  <Text style={styles.conteudo}>{item.descricao}</Text>
+                  <Text style={styles.conteudo}>{item.cargaHoraria}</Text>
+                  <Text style={styles.conteudo}>{item.preco}</Text>
+                  <Text style={styles.conteudo}>{item.categoria}</Text>
+                </View>
+              )
+            }} />
+        </SafeAreaView>
       </View>
     );
   }
@@ -32,7 +57,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '15%',
+    paddingTop: '15%'
   },
   conteudo: {
     margin: 10,
