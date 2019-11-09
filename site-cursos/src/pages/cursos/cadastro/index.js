@@ -1,26 +1,27 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
 
 import CursoForm from '../form'
 import CursoList from '../list'
 
 
+
 const URL = "http://localhost:3200/api/curso"
 
 export default class Cadastro extends Component {
 
-    initialState = {
-        data: [],
-        _id: '',
-        codigo: 0,
-        descricao: '',
-        cargaHoraria: 0, 
-        preco: 0.0,
-        categoria: 'REDES',
-        textoBotao : 'Adicionar'
-    }
+    // initialState = {
+    //     data: [],
+    //     _id: '',
+    //     codigo: 0,
+    //     descricao: '',
+    //     cargaHoraria: 0, 
+    //     preco: 0.0,
+    //     categoria: 'REDES',
+    //     textoBotao : 'Adicionar'
+    // }
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = this.initialState
     }
@@ -35,23 +36,23 @@ export default class Cadastro extends Component {
 
     adicionarCurso(e) {
         e.preventDefault();
-        const {_id, codigo, descricao, cargaHoraria, preco, categoria} = this.state
+        const { _id, codigo, descricao, cargaHoraria, preco, categoria } = this.state
         const body = { codigo, descricao, cargaHoraria, preco, categoria }
 
-        if(_id && _id.trim() !== ''){
+        if (_id && _id.trim() !== '') {
             axios.put(`${URL}/${_id}`, body)
-            .then(_ => {
-                this.callbackSuccess('Curso atualizado')
-            }).catch(this.callbackError);
-        }else{
+                .then(_ => {
+                    this.callbackSuccess('Curso atualizado')
+                }).catch(this.callbackError);
+        } else {
             axios.post(URL, body)
-            .then(_ => {
-                this.callbackSuccess('Curso adicionado')
-            }).catch(this.callbackError);
+                .then(_ => {
+                    this.callbackSuccess('Curso adicionado')
+                }).catch(this.callbackError);
         }
     }
 
-    callbackSuccess = function(msg){
+    callbackSuccess = function (msg) {
         alert(msg);
         this.setState(this.initialState)
         this.listar();
@@ -128,13 +129,13 @@ export default class Cadastro extends Component {
             categoria: curso.categoria,
             cargaHoraria: curso.cargaHoraria,
             descricao: curso.descricao,
-            textoBotao : 'Atualizar'
+            textoBotao: 'Atualizar'
         })
     }
 
-    limpar = function(e){
+    limpar = function (e) {
         e.preventDefault();
-        this.setState({...this.initialState, data : this.state.data})
+        this.setState({ ...this.initialState, data: this.state.data })
     }
 
     render() {
@@ -143,18 +144,19 @@ export default class Cadastro extends Component {
             <div className="row border-bottom">
                 <div className="col-md-6">
                     <CursoForm alteraCampos={this.alteraCampos.bind(this)}
-                        codigo={this.state.codigo}
-                        descricao={this.state.descricao}
-                        cargaHoraria={this.state.cargaHoraria}
-                        preco={this.state.preco}
-                        categoria={this.state.categoria}
+                        // codigo={this.state.codigo}
+                        // descricao={this.state.descricao}
+                        // cargaHoraria={this.state.cargaHoraria}
+                        // preco={this.state.preco}
+                        // categoria={this.state.categoria}
                         adicionarCurso={this.adicionarCurso.bind(this)}
-                        textoBotao={this.state.textoBotao}
+                        // textoBotao={this.state.textoBotao}
                         limpar={this.limpar.bind(this)}
                     />
                 </div>
                 <div className="col-md-6">
-                    <CursoList batatas={this.state.data}
+                    <CursoList
+                        //batatas={this.state.data}
                         removerCurso={this.removerCurso.bind(this)}
                         consultarCurso={this.consultarCurso.bind(this)} />
                 </div>

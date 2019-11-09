@@ -1,6 +1,19 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-export default class Formulario extends React.Component {
+
+
+const  trazStoreParaProps = reduxState =>({
+    condigo:reduxState.curso.codigo,
+    descricao:reduxState.curso.descricao,
+    cargaHoraria:reduxState.curso.cargaHorariaigo,
+    preco:reduxState.curso.preco,
+    categoria:reduxState.curso.categoria,
+    textoBotao:reduxState.curso.textoBotao
+})
+
+class Formulario extends React.Component {
+
 
     render() {
         return (
@@ -78,3 +91,6 @@ export default class Formulario extends React.Component {
         )
     }
 }
+
+
+export default connect(trazStoreParaProps, null)(Formulario)

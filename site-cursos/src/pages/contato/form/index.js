@@ -7,7 +7,7 @@ import {
     alteraNome,
     alteraEmail,
     alteraAssunto,
-    adicionaContato
+    adicionaContato          
 } from '../../../actions/contato-actions';
 
 
