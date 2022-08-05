@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
-    "mongoose": "^5.7.1",
+    "mongoose": "^5.7.5",
     "node-restful": "^0.2.6"
   }
 }
